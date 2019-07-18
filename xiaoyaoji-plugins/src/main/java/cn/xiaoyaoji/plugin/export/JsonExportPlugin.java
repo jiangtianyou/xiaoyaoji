@@ -1,7 +1,6 @@
 package cn.xiaoyaoji.plugin.export;
 
 import cn.com.xiaoyaoji.core.common.Constants;
-import cn.com.xiaoyaoji.core.plugin.PluginInfo;
 import cn.com.xiaoyaoji.core.plugin.doc.DocExportPlugin;
 import cn.com.xiaoyaoji.core.util.AssertUtils;
 import cn.com.xiaoyaoji.core.util.JsonUtils;
@@ -11,10 +10,10 @@ import cn.com.xiaoyaoji.service.ProjectService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.codec.CharEncoding;
+import org.apache.commons.io.FileUtils;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.List;
@@ -40,12 +39,29 @@ public class JsonExportPlugin extends DocExportPlugin {
         String jsonStr = JsonUtils.toString(json);
         String encoding = Constants.UTF8.displayName();
         response.setCharacterEncoding(encoding);
-        response.setContentType("application/json;charset="+encoding);
-        PrintWriter writer = response.getWriter();
-        response.setContentLength(jsonStr.getBytes().length);
+        response.setContentType("application/octet-stream");
         String fileName = URLEncoder.encode( project.getName(), Charset.forName(CharEncoding.UTF_8).displayName())+".mjson";
+
         response.setHeader("Content-Disposition","attachment; filename=\""+fileName+"\";");
-        writer.write(jsonStr);
-        writer.flush();
+
+        String path = Thread.currentThread().getContextClassLoader().getResource(".").getPath();
+        File file = new File(path + "/tmp");
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        // 创建临时文件
+        File jsonFile = new File(path + "/tmp/" + fileName);
+        response.setContentLength((int)jsonFile.length());
+        FileUtils.writeStringToFile(jsonFile, jsonStr, "UTF-8");
+        FileInputStream fileInputStream = new FileInputStream(jsonFile);
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+        byte[] b = new byte[bufferedInputStream.available()];
+        bufferedInputStream.read(b);
+        OutputStream outputStream = response.getOutputStream();
+        outputStream.write(b);
+        // 人走带门
+        bufferedInputStream.close();
+        outputStream.flush();
+        outputStream.close();
     }
 }
