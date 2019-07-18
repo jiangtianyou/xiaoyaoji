@@ -5,3 +5,5 @@ target/
 e.log
 e.log.1
 config.dev.properties
+# plugins folder
+cn.xiaoyaoji.plugin
