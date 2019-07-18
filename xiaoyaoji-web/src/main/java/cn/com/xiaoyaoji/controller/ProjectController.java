@@ -20,6 +20,8 @@ import cn.com.xiaoyaoji.service.ProjectService;
 import cn.com.xiaoyaoji.service.ServiceFactory;
 import cn.com.xiaoyaoji.service.ServiceTool;
 import cn.com.xiaoyaoji.view.MultiView;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -129,13 +132,10 @@ public class ProjectController {
      */
     @Ignore
     @GetMapping(value = "/{id}/export/{pluginId}/do")
-    @ResponseBody
     public void export(@PathVariable("id") String id, @PathVariable String pluginId, User user, HttpServletResponse response) throws IOException {
-
         Project project = ProjectService.instance().getProject(id);
         AssertUtils.notNull(project, Message.PROJECT_NOT_FOUND);
         ServiceTool.checkUserHasAccessPermission(project, user);
-
         PluginInfo<DocExportPlugin> docExportPluginPluginInfo = PluginManager.getInstance().getExportPlugin(pluginId);
         AssertUtils.notNull(docExportPluginPluginInfo,"不支持该操作");
         docExportPluginPluginInfo.getPlugin().doExport(id,response);

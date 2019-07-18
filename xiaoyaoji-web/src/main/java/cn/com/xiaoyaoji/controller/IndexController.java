@@ -45,7 +45,7 @@ public class IndexController {
 
     @GetMapping(value = {"/","/index"})
     public Object index() {
-        return new ModelAndView("/index");
+        return new ModelAndView("/login");
     }
 
     @GetMapping(value = {"/help","/help.html"})

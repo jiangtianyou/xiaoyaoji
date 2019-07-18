@@ -6,7 +6,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="home-header">
     <div class="mc cb ta-c">
-        <a href="${ctx}/" class="fl"><img src="${assets}/img/logo/full.png" alt="logo"></a>
+        <a href="${ctx}/dashboard?v=${v}" class="fl"><img src="${assets}/img/logo/full.png" alt="logo"></a>
         <span class="header-titles">
                 <a href="${ctx}/dashboard" class="${pageName=='default'?'active':''}">我的</a>
                 <a href="${ctx}/dashboard/recycle" class="${pageName=='recycle'?'active':''}">回收站</a>
