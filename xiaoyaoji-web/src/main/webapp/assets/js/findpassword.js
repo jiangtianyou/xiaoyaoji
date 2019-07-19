@@ -23,7 +23,7 @@ require(['vue', 'utils','vueEx'], function (Vue, utils) {
                     toastr.error('两次密码输入不一致');
                     return;
                 }
-                utils.post('/user/newpassword.json', {
+                utils.post('/user/newpassword', {
                     email: this.email, password: this.password, id: this.id
                 }, function (rs) {
                     toastr.success('操作成功!');
