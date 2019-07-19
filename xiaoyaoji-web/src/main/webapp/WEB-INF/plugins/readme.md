@@ -1,0 +1,1 @@
+ 这个目录放plugin模块生成的zip包，启动项目后会自动解压zip安装plugin
