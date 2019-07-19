@@ -33,7 +33,7 @@
                     <p>验证邮件发送成功。</p>
                     <p>请至邮箱查收验证邮件，进行邮箱确认操作。</p>
                     <div class="item"><br/>
-                        <a v-on:click="go" class="btn btn-primary lf-gotomail">立刻登陆邮箱完成验证</a>
+                        <a v-on:click="go" class="btn btn-primary lf-gotomail">立刻登录邮箱完成验证</a>
                     </div>
                 </div>
             </template>

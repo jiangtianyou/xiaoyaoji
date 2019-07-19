@@ -32,7 +32,7 @@
             <p v-cloak class="tip" v-show="errors.has('password')">{{ errors.first('password') }}</p>
         </div>
         <div class="item">
-            <input type="submit" v-on:click="submit" tabindex="3" id="login-btn" class="btn" value="登陆"/>
+            <input type="submit" v-on:click="submit" tabindex="3" id="login-btn" class="btn" value="登录"/>
         </div>
         <div class="item">
             <div class="col-sm-8">
@@ -47,11 +47,12 @@
     </form>
     <div class="long-line"></div>
     <div class="login-third ta-c">
-        <c:forEach items="${loginPlugins}" var="item">
-            <a v-on:click="thirdparty('${item.id}','${item.plugin.openURL}')">
-                <img src="${ctx}/proxy/${item.id}/${item.icon.icon32x32}?v=${item.version}" title="${item.description}"/>
-            </a>
-        </c:forEach>
+        <%--暂时不要第三方登录--%>
+        <%--<c:forEach items="${loginPlugins}" var="item">--%>
+            <%--<a v-on:click="thirdparty('${item.id}','${item.plugin.openURL}')">--%>
+                <%--<img src="${ctx}/proxy/${item.id}/${item.icon.icon32x32}?v=${item.version}" title="${item.description}"/>--%>
+            <%--</a>--%>
+        <%--</c:forEach>--%>
     </div>
     <br/>
 </div>

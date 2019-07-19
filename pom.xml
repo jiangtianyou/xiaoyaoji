@@ -129,11 +129,6 @@
             </dependency>
             <dependency>
                 <groupId>cn.com.xiaoyaoji</groupId>
-                <artifactId>xiaoyaoji-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.com.xiaoyaoji</groupId>
                 <artifactId>xiaoyaoji-biz</artifactId>
                 <version>${project.version}</version>
             </dependency>

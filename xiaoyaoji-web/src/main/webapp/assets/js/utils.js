@@ -178,7 +178,7 @@
                         return true;
                     }
                     if (location.href.indexOf('/project/demo') !== -1) {
-                        toastr.error('请登陆后尝试');
+                        toastr.error('请登录后尝试');
                         return true;
                     }
                     localStorage.setItem("token", "");

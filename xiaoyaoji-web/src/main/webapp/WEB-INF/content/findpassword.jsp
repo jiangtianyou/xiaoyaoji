@@ -35,7 +35,7 @@
         <div class="long-line"></div>
         <br/>
         <div>
-            <a href="login">返回登陆</a>
+            <a href="login">返回登录</a>
         </div>
     </div>
 </div>
