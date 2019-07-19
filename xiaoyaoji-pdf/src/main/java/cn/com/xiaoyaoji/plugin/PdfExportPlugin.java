@@ -47,7 +47,7 @@ public class PdfExportPlugin extends DocExportPlugin {
         try {
             response.addHeader("Content-Type","application/pdf");
             String fileName = URLEncoder.encode(project.getName(),"UTF-8");
-            response.addHeader("Content-Disposition","attachment; filename='"+fileName+".pdf'");
+            response.addHeader("Content-Disposition","attachment; filename="+fileName+".pdf");
             PdfWriter.getInstance(document, response.getOutputStream());
             document.open();
             printRootTitle(project, document);
